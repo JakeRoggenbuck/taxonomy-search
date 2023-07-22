@@ -19,25 +19,34 @@ function Search() {
 
 	return (
 	<div>
-		<h2>Search Bar</h2>
-		<input onInput={(e) => { setWord(e.target.value); }} class="m-2 text-slate-800" type="text" id="search" name="search"/>
+		<h2 class="text-3xl m-3">Taxonomy Search</h2>
+		<input onInput={(e) => { setWord(e.target.value); }} autocomplete="off" placeholder="felis" class="outline m-2 mb-5 text-slate-800" type="text" id="search" name="search"/>
+		<hr class="py-2"/>
 
-		<For each={list()}>{(item, i) =>
-			<li>
+		<div class="grid grid-cols-4 gap-4">
+			<For each={list()}>{(item, i) =>
 				<a href={`https://en.wikipedia.org/wiki/${item}`}>
-					{item}
+					<div class="bg-slate-200 py-2 ml-2 mr-2 rounded-md">
+						<p class="underline m-0">{item}</p>
+					</div>
 				</a>
-			</li>
-		}</For>
+			}</For>
+		</div>
 	</div>);
+}
+
+function Footing() {
+	return (
+		<div class="absolute bottom-0 p-2 bg-white w-full">
+			<p>Created by <a class="underline text-sky-500" href="https://jr0.org">Jake Roggenbuck</a></p>
+		</div>);
 }
 
 function App() {
   return (
     <div class={styles.App}>
-      <header class={styles.header}>
-		  <Search/>
-      </header>
+		<Search/>
+		<Footing/>
     </div>
   );
 }
