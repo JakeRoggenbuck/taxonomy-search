@@ -22,11 +22,12 @@ function Search() {
 		<h2>Search Bar</h2>
 		<input onInput={(e) => { setWord(e.target.value); }} class="m-2 text-slate-800" type="text" id="search" name="search"/>
 
-
 		<For each={list()}>{(item, i) =>
-  			<li>
-      			{item}
-  			</li>
+			<li>
+				<a href={`https://en.wikipedia.org/wiki/${item}`}>
+					{item}
+				</a>
+			</li>
 		}</For>
 	</div>);
 }
