@@ -16,9 +16,12 @@ def read_root(request: Request):
     cur = con.cursor()
     params = request.query_params
 
+    # Get the query or give an empty string
+    query = params.get("q", "")
+
     res = cur.execute(
         "SELECT * FROM longnames WHERE completename LIKE ? LIMIT 20",
-        ("%" + params["q"] + "%",),
+        ("%" + query + "%",),
     )
 
     return [x[1] for x in res]
